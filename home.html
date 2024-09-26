@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopMate - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        header .name h1 {
+            margin: 0;
+            margin-top: 5px;
+            font-size: 1.8em;
+        }
+
+        .name {
+            display: flex;
+            gap: 20px;
+        }
+
+        .name img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background: url('https://static.vecteezy.com/system/resources/thumbnails/004/707/502/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-top: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .hero a:hover {
+            background: #555;
+            transform: scale(1.05);
+        }
+
+        main {
+            padding: 2em 0;
+        }
+
+        .main-content {
+            text-align: center;
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .main-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .main-content p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 2em;
+        }
+
+        .main-content a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .main-content a:hover {
+            background: #555;
+            transform: scale(1.05);
+        }
+
+        .featured-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .featured-item {
+            flex: 1 1 calc(33.333% - 20px);
+            margin: 10px;
+            text-align: center;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-top: 5px;
+        }
+
+        .featured-item h3 {
+            margin: 10px 0;
+            font-size: 1.5em;
+        }
+
+        .featured-item p {
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1030px) {
+            .featured-section {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero {
+                height: auto;
+                padding: 20px;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .hero a {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .featured-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .featured-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .main-content h2 {
+                font-size: 2em;
+            }
+
+            .main-content p {
+                font-size: 1em;
+            }
+
+            .main-content a {
+                padding: 8px 16px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero a {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .featured-item h3 {
+                font-size: 1.2em;
+            }
+
+            .featured-item p {
+                font-size: 1em;
+            }
+
+            .main-content h2 {
+                font-size: 1.8em;
+            }
+
+            .main-content p {
+                font-size: 0.9em;
+            }
+
+            .main-content a {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="name">
+                <img src="5.jpg" alt="logo">
+                <h1>ShopMate</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <div>
+                <h2>Welcome to ShopMate!</h2>
+                <p>Your one-stop shop for the latest and greatest in fashion, jewelry, and electronics. Explore our
+                    products and find what suits you best.</p>
+                <a href="product.html">Browse Our Products</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h2>Discover Our Collection</h2>
+            <p>Shop the latest trends and styles. We have something for everyone!</p>
+            <a href="product.html">See More</a>
+        </div>
+
+        <div class="featured-section">
+            <div class="featured-item">
+                <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/monitor/3/5/k/-original-imahfkddtejkcwtu.jpeg?q=70"
+                    alt="Featured Product 1">
+                <h3>Upto 40% off</h3>
+                <p>Discover the best in class.</p>
+            </div>
+            <div class="featured-item">
+                <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/v/b/g/xl-coloresms338-akk-enterprise-original-imah2e4g6vbm9vuc.jpeg?q=70"
+                    alt="Featured Product 2">
+                <h3>Special offer</h3>
+                <p>Quality and style at your fingertips.</p>
+            </div>
+            <div class="featured-item">
+                <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/f/g/c/xl-vs-ch-multi-vellical-original-imaguhwsbb2hedp8.jpeg?q=70"
+                    alt="Featured Product 3">
+                <h3>New Collection</h3>
+                <p>Trendy and affordable.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ShopMate. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </footer>
+</body>
+
+</html>

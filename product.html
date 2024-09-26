@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopMate - Product</title>
+    <script src="https://kit.fontawesome.com/48460d0232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        select {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+        }
+
+        option {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .optioncontainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            margin: 10px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #container div {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            height: 48vh;
+            width: 250px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        #container div:hover {
+            transform: scale(1.05);
+        }
+
+        #container div img {
+            width: 70%;
+            height: 50%;
+            border-bottom: 1px solid #ddd;
+            margin: 10px;
+        }
+
+        #container div p {
+            margin: 5px;
+        }
+
+        #container div p:nth-child(2) {
+            font-weight: bolder;
+        }
+
+        #container div p:last-child {
+            font-weight: normal;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn:hover {
+            background: #747373;
+        }
+
+        .cart {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 1.1em;
+            color: #fff;
+            background: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cart:hover {
+            background: #555;
+            transform: scale(1.05);
+        }
+
+        #cart-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #cart-container th,
+        #cart-container td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        #cart-container th {
+            background-color: #f8f8f8;
+            font-weight: bold;
+        }
+
+        #cart-container p {
+            font-size: 16px;
+            color: #777;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .remove-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 14px;
+        }
+
+        .remove-btn:hover {
+            background-color: #ff1a1a;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        header .name h1 {
+            margin: 0;
+            margin-top: 5px;
+            font-size: 1.8em;
+        }
+
+        .name{
+            display: flex;
+            gap: 20px;
+        }
+        
+        .name img{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+
+
+<header>
+    <div class="container">
+        <div class="name">
+            <img src="5.jpg" alt="logo">
+            <h1>ShopMate</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <div class="optioncontainer">
+        <select id="productCategory">
+            <option value="">All</option>
+            <option value="men's clothing">Men's Clothing</option>
+            <option value="women's clothing">Women's Clothing</option>
+            <option value="jewelery">Jewelery</option>
+            <option value="electronics">Electronics</option>
+        </select>
+        <button class="cart" onclick="toggleCart()">Cart</button>
+    </div>
+    <div id="container"></div>
+    <div id="cart-container" style="display:none;"></div>
+    <script>
+        const cartItems = [];
+
+        function checkCart(itemId) {
+            for (let i = 0; i < cartItems.length; i++) {
+                if (cartItems[i].id === itemId) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function addToCart(event, item) {
+            if (!checkCart(item.id)) {
+                cartItems.push(item);
+                event.target.innerText = 'Go to Cart';
+            } else {
+                toggleCart(true);
+            }
+        }
+
+        function removeFromCart(itemId) {
+            const index = cartItems.findIndex(item => item.id === itemId);
+            if (index !== -1) {
+                cartItems.splice(index, 1);
+                showCart();
+                updateProductButtons();
+            }
+        }
+
+        function updateProductButtons() {
+            const productButtons = document.querySelectorAll('#container .btn');
+            productButtons.forEach(button => {
+                const productId = parseInt(button.dataset.productId);
+                if (!checkCart(productId)) {
+                    button.innerText = 'Add to Cart';
+                }
+            });
+        }
+
+        function toggleCart(Cart = false) {
+            const container = document.getElementById('container');
+            const cartContainer = document.getElementById('cart-container');
+            const productCategory = document.querySelector('#productCategory');
+            const cartButton = document.querySelector('.cart');
+
+            if (Cart || cartContainer.style.display === 'none') {
+                container.style.display = 'none';
+                cartContainer.style.display = 'block';
+                productCategory.style.display = 'none';
+                cartButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+                showCart();
+            } else {
+                container.style.display = 'flex';
+                cartContainer.style.display = 'none';
+                productCategory.style.display = 'block';
+                cartButton.innerHTML = 'Cart';
+            }
+        }
+
+
+        function showCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.innerHTML = '';
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                let table = document.createElement('table');
+                table.innerHTML = `
+                    <tr>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>`;
+
+                let totalQuantity = 0;
+                let totalPrice = 0;
+
+                cartItems.forEach(item => {
+                    totalQuantity += 1;
+                    totalPrice += item.price;
+
+                    let row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><img src="${item.image}" alt="" width="50"></td>
+                        <td>${item.title}</td>
+                        <td>$${item.price}</td>
+                        <td>1</td>
+                        <td><button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button></td>`;
+                    table.appendChild(row);
+                });
+
+                cartContainer.appendChild(table);
+
+                let billSection = document.createElement('div');
+                billSection.innerHTML = `
+                    <p><strong>Total Quantity:</strong> ${totalQuantity}</p>
+                    <p><strong>Total Price:</strong> $${totalPrice.toFixed(2)}</p>`;
+                cartContainer.appendChild(billSection);
+            }
+        }
+
+
+        function fetchApi(category) {
+            const url = category ? `https://fakestoreapi.com/products/category/${category}` : 'https://fakestoreapi.com/products';
+            fetch(url).then((res) => res.json())
+                .then((data) => {
+                    const container = document.getElementById('container');
+                    container.innerHTML = '';
+                    data.forEach(e => {
+                        let row = document.createElement('div');
+                        row.innerHTML =
+                            `<img src=${e.image} alt="">
+                             <p>$ ${e.price}</p>
+                             <p>${e.title}</p>
+                             <button class="btn" data-product-id="${e.id}">${checkCart(e.id) ? 'Go to Cart' : 'Add to Cart'}</button>`;
+                        container.appendChild(row);
+                        row.querySelector('.btn').addEventListener("click", (event) => {
+                            addToCart(event, e);
+                        });
+                    });
+                });
+        }
+
+        document.querySelector('#productCategory').addEventListener("change", (e) => {
+            let category = e.target.value;
+            fetchApi(category);
+        });
+        fetchApi('')
+
+    </script>
+
+
+</body>
+
+</html>
